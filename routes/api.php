@@ -31,5 +31,8 @@ Route::name('app')->namespace('App\Http\Controllers')->group(function() {
 
     Route::prefix('/tasks')->group(function() {
         Route::resource('/', TaskController::class);
+        Route::get('/{id}', [TaskController::class, 'show']);
+        Route::put('/{id}', [TaskController::class, 'update']);
+        Route::delete('/{id}', [TaskController::class, 'destroy']);
     });
 });
