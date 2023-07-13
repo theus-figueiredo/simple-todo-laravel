@@ -45,7 +45,7 @@ class UserController extends Controller
         } catch(\Exception $e)
         {
             $errorMessage = new ApiMessage($e->getMessage());
-            return response()->json(['Error' => $errorMessage->sendMessage()], 401);
+            return response()->json(['Error' => $e->getMessage()], 401);
         }
     }
 

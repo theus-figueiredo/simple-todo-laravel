@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,9 @@ Route::name('app')->namespace('App\Http\Controllers')->group(function() {
         Route::get('/{id}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
+    });
+
+    Route::prefix('/tasks')->group(function() {
+        Route::resource('/', TaskController::class);
     });
 });
