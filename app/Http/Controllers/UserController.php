@@ -52,18 +52,56 @@ class UserController extends Controller
 
     public function show(string $id)
     {
-        
+        try {
+
+            $user = $this->user->findOrFail($id);
+
+            return response()->json(['data' => $user], 200);
+
+        } catch(\Exception $e) {
+            $errorMessage = new ApiMessage($e->getMessage());
+            return response()->json(['Error' => $errorMessage->sendMessage()], 401);
+        }
     }
 
 
     public function update(Request $request, string $id)
     {
-        
+        $data = $request->all();
+
+        if($request->has('password') && $request->get('password'))
+        {
+            $data['password'] = bcrypt($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
+        try {
+
+            $user = $this->user->findOrFail($id);
+            $user->update($data);
+
+            return response()->json(['data' => $user], 200);
+
+        } catch(\Exception $e) {
+            $errorMessage = new ApiMessage($e->getMessage());
+            return response()->json(['Error' => $errorMessage->sendMessage()], 401);
+        } 
     }
 
 
     public function destroy(string $id)
     {
-        
+        try {
+
+            $user = $this->user->findOrFail($id);
+            $user->delete();
+
+            return response()->json(['data' => 'user deleted'], 200);
+
+        } catch(\Exception $e) {
+            $errorMessage = new ApiMessage($e->getMessage());
+            return response()->json(['Error' => $errorMessage->sendMessage()], 401);
+        } 
     }
 }
