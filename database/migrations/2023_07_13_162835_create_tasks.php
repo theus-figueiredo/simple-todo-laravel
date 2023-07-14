@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->text('description');
-            $table->date('due_in');
+            $table->date('due_in')->nullable();
             $table->boolean('completed');
             $table->date('completion_date')->nullable();
             $table->timestamps();

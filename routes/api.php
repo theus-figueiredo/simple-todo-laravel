@@ -4,6 +4,7 @@ use App\Http\Controllers\TaskController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,12 +25,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::name('app')->namespace('App\Http\Controllers')->group(function() {
     Route::prefix('/users')->group(function() {
         Route::resource('/', UserController::class);
+        Route::post('/login', [LoginController::class, 'login']);
         Route::get('/{id}', [UserController::class, 'show']);
         Route::put('/{id}', [UserController::class, 'update']);
         Route::delete('/{id}', [UserController::class, 'destroy']);
     });
 
-    Route::prefix('/tasks')->group(function() {
+    Route::prefix('/tasks')->middleware('jwt.auth')->group(function() {
         Route::resource('/', TaskController::class);
         Route::get('/{id}', [TaskController::class, 'show']);
         Route::put('/{id}', [TaskController::class, 'update']);
