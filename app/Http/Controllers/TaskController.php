@@ -21,7 +21,7 @@ class TaskController extends Controller
     {
         try {
 
-            $tasks = $this->task->paginate('10');
+            $tasks = auth('api')->user()->task()->paginate('10');
 
             return response()->json(['data' => $tasks], 200);
 
@@ -51,6 +51,7 @@ class TaskController extends Controller
 
         try {
 
+            $data['user_id'] = auth('api')->user()->id;
             $task = $this->task->create($data);
 
             return response()->json(['data' => $task], 201);
@@ -91,15 +92,22 @@ class TaskController extends Controller
 
         if($data['completed'] == true)
         {
-            $data['completion_date'] = date('Y-m-d');
+            $data['completion_date'] = new DateTime();
         }
 
         try {
 
+            $user_id = auth('api')->user()->id;
             $task = $this->task->findOrFail($id);
-            $task->update($data);
 
-            return response()->json(['data' => $task]);
+            if($user_id == $task['user_id'])
+            {
+                $task->update($data);
+
+                return response()->json(['data' => $task], 200);
+            }
+
+            return response()->json(['data' => 'User unauthorized'], 401);
 
         } catch (\Exception $e) {
             $errorMessage = new ApiMessage($e->getMessage());
@@ -112,11 +120,16 @@ class TaskController extends Controller
     {
         try {
 
+            $user_id = auth('api')->user()->id;
             $task = $this->task->findOrFail($id);
 
-            $task->delete();
+            if($user_id == $task['user_id'])
+            {
+                $task->delete();
+                return response()->json(['data' => 'task deleted'], 200);
+            }
 
-            return response()->json(['data' => 'task deleted'], 200);
+            return response()->json(['data' => 'User unauthorized'], 401);
 
         } catch (\Exception $e) {
             $errorMessage = new ApiMessage($e->getMessage());
