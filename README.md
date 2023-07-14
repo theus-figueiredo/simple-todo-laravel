@@ -45,7 +45,7 @@ Para executar o projeto é preciso adicionar algumas variais de ambiente:
 
 o username e senha do mysql no container em questão são respectivamente `sail` e `password`
 
-No projeto há um arquivo .env.example com um exemplo do arquivo .env, use-o usa-lo como base.
+No projeto há um arquivo .env.example com um exemplo do arquivo .env, use-o como base.
 
 
 
