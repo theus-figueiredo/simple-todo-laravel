@@ -27,8 +27,8 @@ Route::name('app')->namespace('App\Http\Controllers')->group(function() {
         Route::resource('/', UserController::class);
         Route::post('/login', [LoginController::class, 'login']);
         Route::get('/{id}', [UserController::class, 'show']);
-        Route::put('/{id}', [UserController::class, 'update']);
-        Route::delete('/{id}', [UserController::class, 'destroy']);
+        Route::put('/{id}', [UserController::class, 'update'])->middleware('jwt.auth');
+        Route::delete('/{id}', [UserController::class, 'destroy'])->middleware('jwt.auth');
     });
 
     Route::prefix('/tasks')->middleware('jwt.auth')->group(function() {

@@ -78,10 +78,17 @@ class UserController extends Controller
 
         try {
 
+            $user_id = auth('api')->user()->id;
             $user = $this->user->findOrFail($id);
-            $user->update($data);
 
-            return response()->json(['data' => $user], 200);
+            if($user_id == $user['id'])
+            {
+                $user->update($data);
+
+                return response()->json(['data' => $user], 200);
+            }
+
+            return response()->json(['data' => 'User unauthorized'], 401);
 
         } catch(\Exception $e) {
             $errorMessage = new ApiMessage($e->getMessage());
@@ -94,10 +101,17 @@ class UserController extends Controller
     {
         try {
 
+            $user_id = auth('api')->user()->id;
             $user = $this->user->findOrFail($id);
-            $user->delete();
 
-            return response()->json(['data' => 'user deleted'], 200);
+            if($user_id == $user['id'])
+            {
+                $user->delete();
+
+                return response()->json(['data' => 'user deleted'], 200);
+            }
+
+            return response()->json(['data' => 'User unauthorized'], 401);
 
         } catch(\Exception $e) {
             $errorMessage = new ApiMessage($e->getMessage());
