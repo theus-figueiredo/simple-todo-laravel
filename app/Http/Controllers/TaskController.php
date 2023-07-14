@@ -6,6 +6,7 @@ use App\Helper\ApiMessage;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use DateTime;
+use DateTimeZone;
 
 class TaskController extends Controller
 {
@@ -130,6 +131,37 @@ class TaskController extends Controller
             }
 
             return response()->json(['data' => 'User unauthorized'], 401);
+
+        } catch (\Exception $e) {
+            $errorMessage = new ApiMessage($e->getMessage());
+            return response()->json(['Error' => $errorMessage->sendMessage()], 401);
+        }
+    }
+
+
+    public function markTaskAsCompleted(string $id)
+    {
+        $task = $this->task->findOrFail($id);
+        $user_id = auth('api')->user()->id;
+
+        try {
+
+            if($user_id == $task['user_id'])
+            {
+                $task['completed'] = !$task['completed'];
+                $task->save();
+
+                if($task['completed'] == true) {
+                    $timezone = new DateTimeZone('America/Sao_Paulo');
+                    $task['completion_date'] = new DateTime(null, $timezone);
+                }else {
+                    $task['completion_date'] = null;
+                }
+
+                return response()->json(['data' => $task]);
+            }
+
+            return response()->json(['data' => 'Unauthorized user'], 401);
 
         } catch (\Exception $e) {
             $errorMessage = new ApiMessage($e->getMessage());

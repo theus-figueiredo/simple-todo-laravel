@@ -36,5 +36,6 @@ Route::name('app')->namespace('App\Http\Controllers')->group(function() {
         Route::get('/{id}', [TaskController::class, 'show']);
         Route::put('/{id}', [TaskController::class, 'update']);
         Route::delete('/{id}', [TaskController::class, 'destroy']);
+        Route::get('/mark-completed/{id}', [TaskController::class, 'markTaskAsCompleted']);
     });
 });
