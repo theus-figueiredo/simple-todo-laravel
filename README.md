@@ -10,7 +10,7 @@ Sendo desenvolvido como forma de ganhar mais familiaridade com PHP e Laravel
 
 ## Instalando o projeto na sua máquina:
 
-_Necessário ter o docker instalado para seguir o passo a passa abaixo_:
+_Necessário ter o docker instalado para seguir o passo a passa abaixo_
 
 Clonar o repositório para uma pasta local:
 
@@ -50,10 +50,9 @@ o username e senha do mysql no container em questão são respectivamente `sail`
 No projeto há um arquivo .env.example com um exemplo do arquivo .env, use-o como base.
 
 
-
 ## Funções
 
-- Armazenar tarefas para à serem feitas
+- Armazenar tarefas à serem feitas
 - Marcar tarefas como concluídas
 - Salvar datas de entrega de tarefas e datas de conclusão das mesmas
 
