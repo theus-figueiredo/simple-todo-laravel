@@ -25,6 +25,12 @@ Iniciar o docker-compose
 docker-compose up -d
 ```
 
+Gerar a variável de ambiente `APP_KEY`:
+
+```bash
+docker-compose exec laravel.test php artisan key:generate
+```
+
 Executar as migrations:
 
 ```bash
@@ -41,8 +47,6 @@ Para executar o projeto é preciso adicionar algumas variais de ambiente:
 `FORWARD_DB_PORT` -> irá definir a porta local para qual será mapeado o container com o mysql
 
 `JWT_SECRET` -> para fazer uso das funções do JWT
-
-`APP_KEY` -> para armazenar a chave de criptografia usada para proteger os dados sensíveis do aplicativo
 
 
 o username e senha do mysql no container em questão são respectivamente `sail` e `password`
