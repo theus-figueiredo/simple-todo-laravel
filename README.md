@@ -10,11 +10,13 @@ Sendo desenvolvido como forma de ganhar mais familiaridade com PHP e Laravel
 
 ## Instalando o projeto na sua máquina:
 
+_Necessário ter o docker instalado para seguir o passo a passa abaixo_:
+
 Clonar o repositório para uma pasta local:
 
 ```bash
 git clone git@github.com:theus-figueiredo/todo-api.git
-cd simple-todo-api
+cd todo-api
 ```
 
 Iniciar o docker-compose
