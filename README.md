@@ -1,12 +1,13 @@
 
 # To Do List com Laravel
 
-Segunda aplicação em PHP.
-
 Projeto de lista de tarefas em laravel 10
 
-Sendo desenvolvido como forma de ganhar mais familiaridade com PHP e Laravel
+## Funções
 
+- Armazenar tarefas para à serem feitas
+- Marcar tarefas como concluídas
+- Salvar datas de entrega de tarefas e datas de conclusão das mesma
 
 ## Instalando o projeto na sua máquina:
 
@@ -46,14 +47,6 @@ Para executar o projeto é preciso adicionar algumas variais de ambiente:
 o username e senha do mysql no container em questão são respectivamente `sail` e `password`
 
 No projeto há um arquivo .env.example com um exemplo do .env, pode usa-lo como base.
-
-
-
-## Funções
-
-- Armazenar tarefas para à serem feitas
-- Marcar tarefas como concluídas
-- Salvar datas de entrega de tarefas e datas de conclusão das mesmas
 
 
 
