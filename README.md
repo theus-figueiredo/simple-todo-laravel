@@ -134,7 +134,7 @@ OBS: Somente o próprio usuário pode deletar o seu perfil.
 
 ## Endpoints de Tasks
 
-_OBS: Todas as requisições para os endpoints de taks requerem envio do token JWT através deo header Authorization_
+_OBS: Todas as requisições para os endpoints de taks requerem envio do token JWT através do header Authorization_
 
 _OBS2: um user só pode resgatar, alterar ou deletar tarefas que pertencem ao mesmo_
 
