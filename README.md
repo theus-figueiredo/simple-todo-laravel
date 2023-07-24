@@ -11,25 +11,25 @@ Projeto de lista de tarefas em laravel 10
 
 ## Instalando o projeto na sua máquina:
 
-# Clonar o repositório para uma pasta local:
+- Clonar o repositório para uma pasta local:
 
 ```bash
 git clone git@github.com:theus-figueiredo/todo-api.git
 cd simple-todo-api
 ```
 
-# Instalar as dependências:
+- Instalar as dependências:
 ```bash
 composer install
 ```
 
-# Iniciar o docker-compose
+- Iniciar o docker-compose
 
 ```bash
 vendor/bin/sail up -d
 ```
 
-# Executar as migrations:
+- Executar as migrations:
 
 ```bash
 vendor/bin/sail exec laravel.test php artisan migrate
